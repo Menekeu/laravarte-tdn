@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.default',['title'=>'Home'])
 
 @section('content')
     <div class="container">
@@ -15,13 +15,17 @@
                     <strong>
                         <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                         This app has been built by
-                        <a href="https://twitter.com/etsmo">@etsmo</a> for learning purposes.
+                        <a href="https://twitter.com/etsmo" target="_blank">@etsmo</a> for learning purposes.
                     </strong>
                 </p>
             </div>
         </div>
 
-        <p>Feel free to help to improve the <a href="#">source code</a>.</p>
+        <p>Feel free to help to improve the
+            <a href="https://github.com/Menekeu/laravarte-tdn" target="_blank">
+                source code
+            </a>.
+        </p>
 
         <hr>
 
