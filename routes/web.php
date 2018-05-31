@@ -13,3 +13,6 @@
 
 Route::get('/','PageController@home')->name('home');
 Route::get('/about','PageController@about')->name('about');
+Route::get('/contact','ContactsController@create')->name('contact');
+
+Route::post('/contact','ContactsController@store')->name('contact.store');

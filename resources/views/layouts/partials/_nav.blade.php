@@ -30,7 +30,7 @@
                         <li><a href="https://larachat.com">Larachat</a></li>
                     </ul>
                 </li>
-                <li><a href="#contact">Contact</a></li>
+                <li class="{{set_active_route('contact')}}"><a href="{{route('contact')}}">Contact</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
