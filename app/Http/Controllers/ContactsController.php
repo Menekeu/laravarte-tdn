@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactFormRequest;
 use App\Mail\ContactMessageCreated;
+use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -14,12 +15,16 @@ class ContactsController extends Controller
         return view('contacts.contact');
     }
 
+    /**
+     * @param ContactFormRequest $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function store(ContactFormRequest $request){
 
-        $mailable = new ContactMessageCreated($request->name,$request->email,$request->message);
+        $msg = Message::create($request->only('name','email','message'));
 
         Mail::to(config('laracarte.admin_adress'))
-              ->send($mailable);
+              ->send(new ContactMessageCreated($msg));
 
         flashy()->success('Nous vous repondrons plus tard.');
 

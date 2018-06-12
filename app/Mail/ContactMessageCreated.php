@@ -2,17 +2,16 @@
 
 namespace App\Mail;
 
+use App\Models\Message;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ContactMessageCreated extends Mailable
+class ContactMessageCreated extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    public $name;
-    public $email;
     public $msg;
 
     /**
@@ -20,10 +19,8 @@ class ContactMessageCreated extends Mailable
      *
      * @return void
      */
-    public function __construct($name,$email,$msg)
+    public function __construct(Message $msg)
     {
-        $this->name = $name;
-        $this->email = $email;
         $this->msg = $msg;
     }
 
@@ -34,6 +31,7 @@ class ContactMessageCreated extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mails.created');
+        return $this->markdown('mails.created')
+                    ->from($this->msg->email,$this->msg->name);
     }
 }

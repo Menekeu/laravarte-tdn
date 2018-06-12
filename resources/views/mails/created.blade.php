@@ -2,9 +2,9 @@
 # Hi Patricia
 
 @component('mail::table')
-    | name          | email        | msg      |
-    | ------------- |:------------:| --------:|
-    | {{$name}}     | {{$email}}   | {{$msg}} |
+    | name           | email          | msg               |
+    | -------------  |:------------:  | --------:         |
+    | {{$msg->name}} | {{$msg->email}}| {{$msg->message}} |
 @endcomponent
 
 Thanks,<br>
