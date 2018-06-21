@@ -14,6 +14,8 @@
 Use App\Mail\ContactMessageCreated;
 
 Route::get('/','PageController@home')->name('home');
+Route::post('/lang','PageController@lang')->name('lang');
+
 Route::get('/about','PageController@about')->name('about');
 Route::get('/contact','ContactsController@create')->name('contact');
 
@@ -23,3 +25,7 @@ Route::get('/test-email',function (){
     return new ContactMessageCreated('patricia','patriciamenkeu@gmail.com',
                                     'merçi teacher du net');
 });
+
+Auth::routes();
+
+//Route::get('/home', 'HomeController@index')->name('home');

@@ -32,10 +32,43 @@
                 </li>
                 <li class="{{set_active_route('contact')}}"><a href="{{route('contact')}}">Contact</a></li>
             </ul>
+            <ul class="nav navbar-nav navbar-right row">
+                <li>
+                    <form name="language" action="{{route('lang')}}" method="POST">
+                        {{ csrf_field() }}
+                        <select name="lan" id="language" onchange="this.form.submit();">
+                            <option value="fr" {{Session::get('applocale') ==='fr' ? 'selected' : ''}}>{{__('messages.francais')}}</option>
+                            <option value="en" {{Session::get('applocale') ==='en' ? 'selected' : ''}}>{{__('messages.anglais')}}</option>
+                        </select>
+                    </form>
+                </li>
+                @guest
+                    <li class="{{set_active_route('login')}}"><a href="{{route('login')}}">Login</a></li>
+                    <li class="{{set_active_route('register')}}"><a href="{{route('register')}}">Register</a></li>
+                @else
+                    <li>
+                        <img src="">
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <span class="glyphicon glyphicon-log-user"></span>
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
 
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#about">Login</a></li>
-                <li><a href="#contact">Register</a></li>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                <span class="glyphicon glyphicon-log-out"></span>
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                @endguest
             </ul>
 
         </div><!--/.nav-collapse -->
