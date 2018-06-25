@@ -45,6 +45,22 @@
         color: blue;
         padding: 5px;
     }
+    .thumbnail {
+        padding: 0 0 0px 0;
+        border: none;
+        border-radius: 5px;
+    }
+
+    /*.thumbnail img {*/
+        /*width: 100%;*/
+        /*height: 100%;*/
+        /*margin-bottom: 10px;*/
+    /*}*/
+    .body-thumbnail{
+        padding-bottom: .875rem;
+        margin-right: 0px;
+        margin-left: 0px;
+    }
 </style>
 
 <body>
@@ -54,6 +70,12 @@
     @yield('content')
 
     @include('layouts.partials._footer')
+
+    @auth
+        @include('layouts.partials.profile');
+        @include('layouts.partials.editProfile');
+    @endauth
+
 </body>
 
 <!-- Jquery -->

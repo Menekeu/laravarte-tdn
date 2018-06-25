@@ -17,6 +17,8 @@ Route::get('/','PageController@home')->name('home');
 Route::post('/lang','PageController@lang')->name('lang');
 
 Route::get('/about','PageController@about')->name('about');
+Route::post('/edit_profile','PageController@edit')->name('edit');
+
 Route::get('/contact','ContactsController@create')->name('contact');
 
 Route::post('/contact','ContactsController@store')->name('contact.store');
@@ -25,6 +27,9 @@ Route::get('/test-email',function (){
     return new ContactMessageCreated('patricia','patriciamenkeu@gmail.com',
                                     'merçi teacher du net');
 });
+
+
+Route::resource('events','Events');
 
 Auth::routes();
 
